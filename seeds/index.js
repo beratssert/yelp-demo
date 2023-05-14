@@ -1,0 +1,45 @@
+// ############################ Database Connection ###########################################
+const mongoose = require("mongoose");
+const dbPath = "mongodb://127.0.0.1:27017/yelp-demo";
+
+mongoose
+  .connect(dbPath)
+  .then(() => {
+    console.log("Database connectioned succesfully");
+  })
+  .catch((err) => {
+    console.log("Error occured when trying to connect the database.", err);
+  });
+// ##########################################################################################
+
+// ############################ Database Seed Logic #########################################
+
+// It accepts an array as a argument and returns its one random element.
+const sampleElementOf = (array) => {
+  const randomIdx = Math.floor(Math.random() * array.length);
+  return array[randomIdx];
+};
+
+const Campground = require("../models/campground");
+const cities = require("./cities");
+const { descriptors, places } = require("./seedHelpers");
+
+// it seeds database with some sample stuff for development purpose.
+const seedDb = async () => {
+  await Campground.deleteMany({});
+  for (let i = 0; i < 50; i++) {
+    const sampleCity = sampleElementOf(cities);
+    const location = `${sampleCity.name}, ${sampleCity.region}`;
+    const title = `${sampleElementOf(descriptors)} ${sampleElementOf(places)}`;
+    const campground = new Campground({ location, title });
+    await campground.save();
+  }
+};
+
+seedDb().then(() => {
+  console.log(
+    "Database seed operations completed succesfully. Dabatabase connection is closed."
+  );
+  mongoose.connection.close();
+});
+// ##########################################################################################
