@@ -15,7 +15,9 @@
 
         <li>
           <a href="/campgrounds/<%= campground._id %>"
-            ><%= campground.title %> - <%= campground.location %></a
+            ><%= campground.title %> - <%= campground.location %> - <%=
+            campground.price %>TL - <%= campground.description %> - <%=
+            campground.image %></a
           >
         </li>
         <% } %>

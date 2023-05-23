@@ -31,7 +31,17 @@ const seedDb = async () => {
     const sampleCity = sampleElementOf(cities);
     const location = `${sampleCity.name}, ${sampleCity.region}`;
     const title = `${sampleElementOf(descriptors)} ${sampleElementOf(places)}`;
-    const campground = new Campground({ location, title });
+    const image = "Image url";
+    const description =
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea consequuntur amet qui enim laboriosam deserunt, esse eligendi blanditiis incidunt ipsam distinctio quam tempora quasi, debitis eum? Aperiam ducimus placeat voluptate!";
+    const price = 20;
+    const campground = new Campground({
+      location,
+      title,
+      description,
+      image,
+      price,
+    });
     await campground.save();
   }
 };

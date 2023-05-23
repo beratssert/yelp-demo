@@ -20,12 +20,33 @@
           id="title"
           value="<%= campground.title %>"
         />
+        <label for="description">Description</label>
+        <input
+          type="text"
+          name="campground[description]"
+          id="description"
+          value="<%= campground.description %>"
+        />
+        <label for="price">Price</label>
+        <input
+          type="text"
+          name="campground[price]"
+          id="price"
+          value="<%= campground.price %>"
+        />
         <label for="location">Location</label>
         <input
           type="text"
           name="campground[location]"
           id="location"
           value="<%= campground.location %>"
+        />
+        <label for="image">Image</label>
+        <input
+          type="text"
+          name="campground[image]"
+          id="image"
+          value="<%= campground.image %>"
         />
         <button>Update Campground</button>
       </form>
