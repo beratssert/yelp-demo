@@ -8,22 +8,63 @@
   </head>
   <body>
     <div>
-      <h1><%= campground.title %></h1>
-      <p>Description: <%= campground.description %></p>
-      <p>Price: <%= campground.price %></p>
-      <p>Location: <%= campground.location %></p>
-      <p>Image: <%= campground.image %></p>
+      <div>
+        <h1><%= campground.title %></h1>
+        <p>Description: <%= campground.description %></p>
+        <p>Price: <%= campground.price %></p>
+        <p>Location: <%= campground.location %></p>
+        <p>Image: <%= campground.image %></p>
+      </div>
+
+      <div>
+        <a href="/campgrounds">Back to Campgrounds</a>
+        <a href="/campgrounds/<%= campground._id %>/edit">Edit Campground</a>
+        <form
+          action="/campgrounds/<%= campground._id %>/?_method=DELETE"
+          method="post"
+        >
+          <button>Delete Campground</button>
+        </form>
+      </div>
     </div>
 
     <div>
-      <a href="/campgrounds">Back to Campgrounds</a>
-      <a href="/campgrounds/<%= campground._id %>/edit">Edit Campground</a>
-      <form
-        action="/campgrounds/<%= campground._id %>/?_method=DELETE"
-        method="post"
-      >
-        <button>Delete Campground</button>
-      </form>
+      <div>
+        <form action="/campgrounds/<%= campground._id %>/reviews" method="post">
+          <label for="rating">Rating</label>
+          <input
+            type="range"
+            name="review[rating]"
+            id="rating"
+            min="1"
+            max="5"
+          />
+          <label for="body">Review</label>
+          <textarea
+            name="review[body]"
+            id="body"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <button>Add Review</button>
+        </form>
+      </div>
+
+      <div>
+        <h3>All Reviews</h3>
+        <% for(let review of campground.reviews) { %>
+        <div>
+          <p>Rating: <%= review.rating %></p>
+          <p>Review: <%= review.body %></p>
+          <form
+            action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+            method="post"
+          >
+            <button>Delete</button>
+          </form>
+        </div>
+        <% } %>
+      </div>
     </div>
   </body>
 </html>

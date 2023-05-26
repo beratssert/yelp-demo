@@ -32,7 +32,9 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.renderShowPage = catchAsync(async (req, res) => {
   const { campgroundId } = req.params;
-  const campground = await Campground.findById(campgroundId);
+  const campground = await Campground.findById(campgroundId).populate(
+    "reviews"
+  );
   res.render("campgrounds/show", { campground });
 });
 
