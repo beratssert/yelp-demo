@@ -4,10 +4,22 @@ const path = require("path");
 const campgroundsRoute = require("./routes/campgrounds");
 const reviewsRoute = require("./routes/reviews");
 const ExpressError = require("./utils/ExpressError");
+const session = require("express-session");
+const flash = require("connect-flash");
+const sessionConfig = require("./configs/sessionConfig");
 
 const app = express();
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
+
+app.use(session(sessionConfig));
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
