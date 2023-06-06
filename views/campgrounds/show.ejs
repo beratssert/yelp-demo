@@ -11,6 +11,7 @@
       <%- include('../partials/flash'); -%>
       <div>
         <h1><%= campground.title %></h1>
+        <p>Submitted by <%= campground.author.username%></p>
         <p>Description: <%= campground.description %></p>
         <p>Price: <%= campground.price %></p>
         <p>Location: <%= campground.location %></p>
@@ -19,17 +20,22 @@
 
       <div>
         <a href="/campgrounds">Back to Campgrounds</a>
-        <a href="/campgrounds/<%= campground._id %>/edit">Edit Campground</a>
-        <form
-          action="/campgrounds/<%= campground._id %>/?_method=DELETE"
-          method="post"
-        >
-          <button>Delete Campground</button>
-        </form>
+        <% if( currentUser && campground.author.equals(currentUser._id)) {%>
+        <div>
+          <a href="/campgrounds/<%= campground._id %>/edit">Edit Campground</a>
+          <form
+            action="/campgrounds/<%= campground._id %>/?_method=DELETE"
+            method="post"
+          >
+            <button>Delete Campground</button>
+          </form>
+        </div>
+        <% } %>
       </div>
     </div>
 
     <div>
+      <% if(currentUser){ %>
       <div>
         <form action="/campgrounds/<%= campground._id %>/reviews" method="post">
           <label for="rating">Rating</label>
@@ -50,22 +56,25 @@
           <button>Add Review</button>
         </form>
       </div>
-
+      <% } %> <% for(let review of campground.reviews) { %>
       <div>
         <h3>All Reviews</h3>
-        <% for(let review of campground.reviews) { %>
         <div>
           <p>Rating: <%= review.rating %></p>
+          <p>By <%= review.author.username %></p>
           <p>Review: <%= review.body %></p>
+
+          <% if( currentUser && review.author.equals(currentUser._id)) {%>
           <form
             action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
             method="post"
           >
             <button>Delete</button>
           </form>
+          <% } %>
         </div>
-        <% } %>
       </div>
+      <% } %>
     </div>
   </body>
 </html>

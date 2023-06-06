@@ -35,12 +35,14 @@ const seedDb = async () => {
     const description =
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea consequuntur amet qui enim laboriosam deserunt, esse eligendi blanditiis incidunt ipsam distinctio quam tempora quasi, debitis eum? Aperiam ducimus placeat voluptate!";
     const price = 20;
+    const author = "647e2df05185bded2d44bbc3";
     const campground = new Campground({
       location,
       title,
       description,
       image,
       price,
+      author,
     });
     await campground.save();
   }

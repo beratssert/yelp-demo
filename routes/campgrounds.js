@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const campground = require("../controllers/campgrounds");
-const { validateCampground } = require("../middlewares");
-const { isLoggedIn } = require("../middlewares");
+const { isLoggedIn, isAuthor, validateCampground } = require("../middlewares");
 
 router
   .route("/")
@@ -13,8 +12,8 @@ router.get("/new", isLoggedIn, campground.renderNewForm);
 router
   .route("/:campgroundId")
   .get(campground.renderShowPage)
-  .put(validateCampground, isLoggedIn, campground.update)
-  .delete(isLoggedIn, campground.delete);
+  .put(validateCampground, isLoggedIn, isAuthor, campground.update)
+  .delete(isLoggedIn, isAuthor, campground.delete);
 router.get("/:campgroundId/edit", campground.renderEditForm);
 
 module.exports = router;
