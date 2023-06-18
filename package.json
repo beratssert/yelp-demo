@@ -14,6 +14,7 @@
   "author": "Berat Sert",
   "license": "ISC",
   "dependencies": {
+    "@mapbox/mapbox-sdk": "^0.15.2",
     "axios": "^1.4.0",
     "connect-flash": "^0.1.1",
     "cross-env": "^7.0.3",

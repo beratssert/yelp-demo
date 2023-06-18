@@ -27,7 +27,7 @@ const { descriptors, places } = require("./seedHelpers");
 // it seeds database with some sample stuff for development purpose.
 const seedDb = async () => {
   await Campground.deleteMany({});
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 300; i++) {
     const sampleCity = sampleElementOf(cities);
     const location = `${sampleCity.name}, ${sampleCity.region}`;
     const title = `${sampleElementOf(descriptors)} ${sampleElementOf(places)}`;
@@ -36,6 +36,11 @@ const seedDb = async () => {
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea consequuntur amet qui enim laboriosam deserunt, esse eligendi blanditiis incidunt ipsam distinctio quam tempora quasi, debitis eum? Aperiam ducimus placeat voluptate!";
     const price = 20;
     const author = "647e2df05185bded2d44bbc3";
+    const geometry = {
+      type: "Point",
+      coordinates: [sampleCity.longitude, sampleCity.latitude],
+    };
+
     const campground = new Campground({
       location,
       title,
@@ -43,6 +48,7 @@ const seedDb = async () => {
       image,
       price,
       author,
+      geometry,
     });
     await campground.save();
   }
