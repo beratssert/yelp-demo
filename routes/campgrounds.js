@@ -4,15 +4,30 @@ const router = express.Router();
 const campground = require("../controllers/campgrounds");
 const { isLoggedIn, isAuthor, validateCampground } = require("../middlewares");
 
+const multer = require("multer");
+const { storage } = require("../cloudinary");
+const upload = multer({ storage });
+
 router
   .route("/")
   .get(campground.read)
-  .post(validateCampground, isLoggedIn, campground.create);
+  .post(
+    isLoggedIn,
+    upload.array("image"),
+    validateCampground,
+    campground.create
+  );
 router.get("/new", isLoggedIn, campground.renderNewForm);
 router
   .route("/:campgroundId")
   .get(campground.renderShowPage)
-  .put(validateCampground, isLoggedIn, isAuthor, campground.update)
+  .put(
+    isLoggedIn,
+    isAuthor,
+    upload.array("image"),
+    validateCampground,
+    campground.update
+  )
   .delete(isLoggedIn, isAuthor, campground.delete);
 router.get("/:campgroundId/edit", campground.renderEditForm);
 

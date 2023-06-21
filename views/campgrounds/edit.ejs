@@ -12,6 +12,7 @@
       <form
         action="/campgrounds/<%= campground._id %>?_method=PUT"
         method="post"
+        enctype="multipart/form-data"
       >
         <label for="title">Title</label>
         <input
@@ -41,13 +42,15 @@
           id="location"
           value="<%= campground.location %>"
         />
-        <label for="image">Image</label>
+        <!-- <label for="image">Image</label>
         <input
           type="text"
           name="campground[image]"
           id="image"
           value="<%= campground.image %>"
-        />
+        /> -->
+        <label class="form-label" for="image">Add Images</label>
+        <input type="file" name="image" id="image" multiple />
         <button>Update Campground</button>
       </form>
     </div>

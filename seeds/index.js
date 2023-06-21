@@ -31,7 +31,16 @@ const seedDb = async () => {
     const sampleCity = sampleElementOf(cities);
     const location = `${sampleCity.name}, ${sampleCity.region}`;
     const title = `${sampleElementOf(descriptors)} ${sampleElementOf(places)}`;
-    const image = "Image url";
+    images: [
+      {
+        url: "https://res.cloudinary.com/djsjaskij/image/upload/v1687371137/YelpCamp/th-256168086_g7fur6.jpg",
+        filename: "YelpCamp/th-256168086_g7fur6",
+      },
+      {
+        url: "https://res.cloudinary.com/djsjaskij/image/upload/v1687371137/YelpCamp/th-256168086_g7fur6.jpg",
+        filename: "YelpCamp/th-256168086_g7fur6",
+      },
+    ];
     const description =
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea consequuntur amet qui enim laboriosam deserunt, esse eligendi blanditiis incidunt ipsam distinctio quam tempora quasi, debitis eum? Aperiam ducimus placeat voluptate!";
     const price = 20;
@@ -45,7 +54,7 @@ const seedDb = async () => {
       location,
       title,
       description,
-      image,
+      images,
       price,
       author,
       geometry,
