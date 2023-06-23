@@ -1,3 +1,4 @@
+const session = require("express-session");
 const MongoDBStore = require("connect-mongo")(session);
 
 const store = new MongoDBStore({
