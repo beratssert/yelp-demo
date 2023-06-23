@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 const PORT = process.env.PORT || 3000;
-
+const dbUrl = process.env.DB_URL || process.env.MONGODB_URI;
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(dbUrl)
   .then(() => {
     console.log("Database connectioned succesfully");
     // Start listening the server ...
