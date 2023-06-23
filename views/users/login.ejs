@@ -5,23 +5,71 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+
+    <!-- Validate Form -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"
+      defer
+    ></script>
+    <script src="/javascripts/validateForms.js" defer></script>
+
+    <!-- Bootstrap -->
+    <%- include('../partials/bootstrap'); -%>
   </head>
   <body>
-    <main>
+    <%- include('../partials/navbar'); -%>
+    <main class="container mt-5">
       <%- include('../partials/flash'); -%>
-      <form action="/login" method="post">
-        <div>
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" />
-        </div>
+      <div
+        class="container d-flex justify-content-center align-items-center mt-5"
+      >
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+              <img
+                src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                alt=""
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Login</h5>
+                <form
+                  action="/login"
+                  method="POST"
+                  class="validated-form"
+                  novalidate
+                >
+                  <div class="mb-3">
+                    <label class="form-label" for="username">Username</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="username"
+                      name="username"
+                      autofocus
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
 
-        <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
+                  <div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                      class="form-control"
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <button class="btn btn-success btn-block">Login</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <button>Login</button>
-      </form>
+      </div>
     </main>
   </body>
 </html>

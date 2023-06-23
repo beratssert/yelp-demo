@@ -5,28 +5,81 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
+
+    <!-- Validate Form -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"
+      defer
+    ></script>
+    <script src="/javascripts/validateForms.js" defer></script>
+
+    <!-- Bootstrap -->
+    <%- include('../partials/bootstrap'); -%>
   </head>
   <body>
+    <%- include('../partials/navbar'); -%>
     <main>
       <%- include('../partials/flash'); -%>
-      <form action="/register" method="post">
-        <div>
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" />
+      <div
+        class="container d-flex justify-content-center align-items-center mt-5"
+      >
+        <div class="row">
+          <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+              <img
+                src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                alt=""
+                class="card-img-top"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Register</h5>
+                <form
+                  action="/register"
+                  method="POST"
+                  class="validated-form"
+                  novalidate
+                >
+                  <div class="mb-3">
+                    <label class="form-label" for="username">Username</label>
+                    <input
+                      class="form-control"
+                      type="text"
+                      id="username"
+                      name="username"
+                      required
+                      autofocus
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input
+                      class="form-control"
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input
+                      class="form-control"
+                      type="password"
+                      id="password"
+                      name="password"
+                      required
+                    />
+                    <div class="valid-feedback">Looks good!</div>
+                  </div>
+                  <button class="btn btn-success btn-block">Register</button>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div>
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" />
-        </div>
-
-        <div>
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
-        </div>
-
-        <button>Register</button>
-      </form>
+      </div>
     </main>
   </body>
 </html>

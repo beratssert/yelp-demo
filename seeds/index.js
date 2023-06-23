@@ -31,7 +31,7 @@ const seedDb = async () => {
     const sampleCity = sampleElementOf(cities);
     const location = `${sampleCity.name}, ${sampleCity.region}`;
     const title = `${sampleElementOf(descriptors)} ${sampleElementOf(places)}`;
-    images: [
+    images = [
       {
         url: "https://res.cloudinary.com/djsjaskij/image/upload/v1687371137/YelpCamp/th-256168086_g7fur6.jpg",
         filename: "YelpCamp/th-256168086_g7fur6",
