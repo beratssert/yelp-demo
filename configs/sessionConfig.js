@@ -1,6 +1,9 @@
 const session = require("express-session");
 const MongoDBStore = require("connect-mongo")(session);
 
+const dbUrl = process.env.DB_URL || process.env.MONGODB_URI;
+const secret = process.env.SESSION_SECRET;
+
 const store = new MongoDBStore({
   url: dbUrl,
   secret,
@@ -13,7 +16,7 @@ store.on("error", function (e) {
 
 module.exports = {
   store,
-  secret: process.env.SESSION_SECRET,
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
